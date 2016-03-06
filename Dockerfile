@@ -1,6 +1,6 @@
 # dockerfile
 #FROM ylin/ssh_java:openjdk-7
-FROM ylin30/ubuntu-java-ssh
+FROM index.alauda.io/ylin30/ubuntu-java-ssh:latest
 MAINTAINER ylin ylin30@gmail.com
 
 RUN sudo apt-get update
