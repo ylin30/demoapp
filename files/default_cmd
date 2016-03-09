@@ -9,7 +9,7 @@ echo "starting sshd"
 sleep 5
 
 echo CLOUDINSIGHT_SERVER=${CLOUDINSIGHT_SERVER} 
-/opt/tester/tcollector/tcollector.py --logfile /var/log/tcollector/tcollector.log -P /tmp/tcollector.pid -H ${CLOUDINSIGHT_SERVER} > /dev/null 2>&1 &
+/opt/tester/tcollector/tcollector.py --logfile /var/log/tcollector/tcollector.log -P /tmp/tcollector.pid -L ${CLOUDINSIGHT_SERVER} > /dev/null 2>&1 &
 
 sleep 1
 
