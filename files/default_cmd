@@ -8,6 +8,13 @@ echo "starting sshd"
 
 sleep 5
 
+# To config logstash to send logs to ElasticSearch
+echo ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+sed -i "s/ELASTICSEARCH_URL/${ELASTICSEARCH_URL}/g" /etc/logstash/conf.d/output.conf
+/opt/logstash/bin/logstash -f /etc/logstash/conf.d --debug > /var/log/logstash/logstash.log 2>&1 &
+
+sleep 5
+
 echo CLOUDINSIGHT_SERVER=${CLOUDINSIGHT_SERVER} 
 /opt/tester/tcollector/tcollector.py --logfile /var/log/tcollector/tcollector.log -P /tmp/tcollector.pid -L ${CLOUDINSIGHT_SERVER} > /dev/null 2>&1 &
 

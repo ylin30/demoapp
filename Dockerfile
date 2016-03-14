@@ -16,6 +16,15 @@ RUN mv tcollector /opt/tester/
 
 ENV CLOUDINSIGHT_SERVER localhost
 
+# For logstash
+RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+RUN echo "deb http://packages.elastic.co/logstash/2.2/debian stable main" | sudo tee -a /etc/apt/sources.list
+RUN sudo apt-get update && sudo apt-get install -y logstash
+ADD logstash_files/input.conf /etc/logstash/conf.d
+ADD logstash_files/output.conf /etc/logstash/conf.d
+
+ENV ELASTICSEARCH_URL localhost:9200
+
 EXPOSE 8000
 
 CMD ["/opt/tester/default_cmd"]
